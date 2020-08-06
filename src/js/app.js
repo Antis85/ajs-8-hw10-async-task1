@@ -1,18 +1,7 @@
-import read from './read';
-import json from './json';
+import GameSavingLoader from './gamesavingloader';
 
-export default class GameSavingLoader {
-  static load() {
-    return new Promise((resolve) => {
-      const data = read();
-      data
-        .then((response) => {
-          const value = json(response);
-          return value;
-        })
-        .then((value) => {
-          resolve(JSON.parse(value));
-        });
-    });
-  }
-}
+GameSavingLoader.load().then((saveData) => {
+  console.log(saveData);// saving объект класса GameSaving
+}, (error) => {
+  console.error(error);
+});
